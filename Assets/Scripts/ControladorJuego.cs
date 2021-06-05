@@ -30,6 +30,24 @@ public class ControladorJuego : MonoBehaviour
 
         //this.transform.Translate(new Vector3(direction.x*moveSpeed*Time.deltaTime,0,direction.y*moveSpeed*Time.deltaTime));
     }
+     void directTransformMove(Vector2 direction){
+
+        if (direction.sqrMagnitude > 1f)
+            direction.Normalize();
+
+            Vector3 directionX = new Vector3(direction.x*moveSpeed*Time.deltaTime,0,direction.y*moveSpeed*Time.deltaTime);
+            if (directionX.x > 0)
+            {
+                this.transform.eulerAngles= new Vector3(0,90,0);
+            }
+            this.transform.position =   this.transform.position + transform.TransformDirection(directionX) ;
+            
+            
+            
+            
+
+        //this.transform.Translate(new Vector3(direction.x*moveSpeed*Time.deltaTime,0,direction.y*moveSpeed*Time.deltaTime));
+    }
 
     void RotateDirection(Vector2 direction){
 
@@ -53,7 +71,8 @@ public class ControladorJuego : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        move(moveDirection);
-        RotateDirection(moveDirection.x);
+        directTransformMove(moveDirection);
+        // move(moveDirection);
+        // RotateDirection(moveDirection.x);
     }
 }
