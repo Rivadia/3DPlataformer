@@ -24,23 +24,30 @@ public class ControladorJuego : MonoBehaviour
         if (direction.sqrMagnitude > 1f)
             direction.Normalize();
 
-            this.transform.position =   this.transform.position + new Vector3(0,0,direction.y*moveSpeed*Time.deltaTime);
+            Vector3 directionX = new Vector3(0,0,direction.y*moveSpeed*Time.deltaTime);
+            this.transform.position =   this.transform.position + transform.TransformDirection(directionX) ;
+            
 
         //this.transform.Translate(new Vector3(direction.x*moveSpeed*Time.deltaTime,0,direction.y*moveSpeed*Time.deltaTime));
     }
 
+    void RotateDirection(Vector2 direction){
+
+     Vector2 rotacion = Vector2.zero;
+     rotacion.x =direction.x *rotationSpeed;
+     rotacion.x *=Time.deltaTime;
+     Vector3 rotacionX = new Vector3 (0,rotacion.x,0); 
+     transform.Rotate( transform.TransformDirection(rotacionX));
+     
+    }
     void RotateDirection(float direction){
 
-     float rotacion = direction * rotationSpeed;
-     rotacion*=Time.deltaTime;
-     transform.Rotate(0,rotacion,0);
-    }
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+     Vector2 rotacion=Vector2.zero ;
+     rotacion.x= direction *rotationSpeed;
+     rotacion.x *=Time.deltaTime;
+     Vector3 rotacionX = new Vector3 (0,rotacion.x,0); 
+     transform.Rotate( rotacionX);
+     
     }
 
     // Update is called once per frame
