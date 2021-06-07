@@ -39,6 +39,8 @@ public class PlayerControlador : MonoBehaviour
         //     Debug.Log("Si llegas");
         //     jumpDirection.y = jumpForce;
         // }
+       
+        
      jumpButton=context.action.triggered;
      
     }
